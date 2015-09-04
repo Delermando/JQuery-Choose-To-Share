@@ -111,26 +111,27 @@
     };
   }
 
-  var ChooseToShare = function(options){
+  var ChooseToShare = function(options,elements){
     this.social = new Social();
     this.social.setNetworks(options);
     this.social.setShareLink(options);
+    this.elements = elements;
 
     var self = this;
 
-    this.init = function(el){
+    this.init = function(){
       this.social.render();
-      el.mouseup(self.social.show).mousedown(self.social.hide);
-      el.on('click',function(e){
-        if (el.is(':visible')) self.social.hide();
+      self.elements.mouseup(self.social.show).mousedown(self.social.hide);
+      self.elements.on('click',function(e){
+        if (self.elements.is(':visible')) self.social.hide();
       });
     };
+
+    self.init();
   };
 
   $.fn.chooseToShare = function(options){
-    var c = new ChooseToShare(options);
-    c.init(this);
-    return this;
+    return new ChooseToShare(options,this);
   };
 
 })(jQuery);
