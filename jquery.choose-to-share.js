@@ -40,7 +40,7 @@
     };
 
     this.render = function(){
-      var html = '<div style="position: absolute;"><ul><li><a class="action twitter" style="cursor: pointer;">Twitter</a></li></ul></div>';
+      var html = '<div style="position: absolute;"><ul><li><a class="twitter" style="cursor: pointer;">Twitter</a></li></ul></div>';
       self.$choose = $(html);
       self.$choose.find('a.twitter').on('click',self.twitter.share);
       $('body').append(self.$choose);
@@ -107,7 +107,7 @@
     this.social = social;
 
     this.share = function() {
-      
+
     };
   }
 
