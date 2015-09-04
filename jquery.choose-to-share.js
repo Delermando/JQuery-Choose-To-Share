@@ -52,7 +52,18 @@
         var selection = self.chooseToShareSelection.getText().trim();
         if(!sel.isCollapsed && selection && selection.length > 10) {
           var top = (sel.getRangeAt(0).getBoundingClientRect().top - 5) + window.scrollY - self.$choose.height();
-          var left = (sel.anchorNode.parentNode.offsetWidth / 2) - self.$choose.width();
+          var left = 0;
+          if(e) {
+            left = e.pageX;
+          } else {
+            var node = sel.anchorNode.parentNode;
+            left += node.offsetWidth / 2;
+            do {
+              left += node.offsetLeft;
+            } while(node = node.offsetParent);
+          }
+          
+          left -= self.$choose.width();
           self.$choose.css("top", top+5).css("left", left).fadeIn('fast');
         }
       }, 10);
